@@ -1,0 +1,72 @@
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.custom-nav-link {
+  text-decoration: none;
+  color: gray;
+}
+
+.fade-out-animation-loss {
+  -webkit-animation: 2s ease 0s normal forwards 2 fadein;
+  animation: 2s ease 0s normal forwards 2 fadein;
+  background-color: var(--bs-danger);
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+
+.fade-out-animation-gain {
+  -webkit-animation: 3s ease 0s normal forwards 2 fadein;
+  animation: 3s ease 0s normal forwards 2 fadein;
+  background-color: #90ee90;
+  color: white;
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  top: 0;
+  left: 0;
+  opacity: 1;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0.5;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes fadein {
+  0% {
+    opacity: 0.5;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.line-clamp {
+  margin: 0 0 1em 0;
+  overflow: hidden;
+}
+.line-clamp p {
+  margin: 0;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
