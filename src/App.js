@@ -12,6 +12,7 @@ import CryptoGraph from './Crypto-Graph';
 import CryptoNews from './Crypto.News';
 import CryptoNewsCarousel from './News.Carousel';
 import CryptoStats from './Crypto.Stats';
+import CryptoDetailed from './Crypto.Detailed';
 
 import {
   BrowserRouter as Router,
@@ -38,7 +39,9 @@ const App = withRouter(props => {
         variant="dark"
         className="px-3"
       >
-        <Navbar.Brand href="/">Cryptonite</Navbar.Brand>
+        <Navbar.Brand onClick={() => props.history.push('/')} href="#">
+          Cryptonite
+        </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="px-3">
           <Nav style={{ marginRight: 'auto' }}>
@@ -63,11 +66,14 @@ const App = withRouter(props => {
             <Link to="/news" className="custom-nav-link px-2">
               News
             </Link>
-            <Link to="/news-carousel" className="custom-nav-link px-2">
+            {/* <Link to="/news-carousel" className="custom-nav-link px-2">
               News Carousel
-            </Link>
+            </Link> */}
             <Link to="/stats" className="custom-nav-link px-2">
               Market Stats
+            </Link>
+            <Link to="/crypto" className="custom-nav-link px-2">
+              Detailed Info
             </Link>
           </Nav>
           <Form style={{ display: 'inline-flex' }}>
@@ -111,6 +117,9 @@ const App = withRouter(props => {
         </Route>
         <Route path="/stats">
           <CryptoStats />
+        </Route>
+        <Route path="/crypto">
+          <CryptoDetailed id="ethereum" />
         </Route>
         <Route exact path="/">
           <CryptoList />
