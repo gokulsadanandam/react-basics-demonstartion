@@ -70,3 +70,15 @@
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+.slick-slide > div {
+  margin: 0 8px;
+  height: 100% !important;
+}
+
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: inherit !important;
+}

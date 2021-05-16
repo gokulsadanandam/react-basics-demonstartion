@@ -14,7 +14,9 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import CryptoStats from './Crypto.Stats';
 
-import { FaFacebookSquare } from 'react-icons/fa';
+import Slider from 'react-slick';
+
+import { FaFacebookSquare, FaUserCircle } from 'react-icons/fa';
 import {
   AiFillYoutube,
   AiFillRedditCircle,
@@ -235,13 +237,31 @@ export default function(props) {
   );
 
   const Founders = ({ team }) => (
-    <ListGroup variant="flush">
+    <Slider
+      slidesToShow={2}
+      dots={true}
+      autoplay={false}
+      adaptiveHeight={true}
+      className="mt-3"
+    >
       {team.slice(0, 5).map(member => (
-        <ListGroup.Item>
-          {`${member.name} - ${member.position}`}{' '}
-        </ListGroup.Item>
+        <Card className="p-2 h-100 d-flex align-items-center">
+          <Card.Img
+            variant="top"
+            src="https://www.w3schools.com/howto/img_avatar.png"
+            thumbnail={true}
+            style={{ width: 75 }}
+            className="mb-2 rounded-circle"
+          />
+          <Card.Body className="p-0 d-flex align-items-center justify-content-center">
+            <Card.Text className="text-center">
+              <h5 className="fw-bold"> {member.name} </h5>
+              <p className="text-muted"> {member.position} </p>
+            </Card.Text>
+          </Card.Body>
+        </Card>
       ))}
-    </ListGroup>
+    </Slider>
   );
 
   const WhitePaper = ({ previewImageSrc, sourceUrl }) => (
@@ -250,7 +270,7 @@ export default function(props) {
         <Card.Img
           variant="top"
           src={previewImageSrc}
-          thumbnail
+          thumbnail={true}
           style={{ width: 175 }}
         />
         <Card.Footer className="p-0">
@@ -272,7 +292,10 @@ export default function(props) {
       {console.log(cryptodetails)}
       <Row>
         <Col>
-          <Media className="d-flex align-items-start mt-3 p-2 ">
+          <Media
+            className="d-flex align-items-start mt-3 p-2"
+            // style={{ width: 'calc( 100% - 146px )' }}
+          >
             <Row className="d-inline  d-none d-md-block d-lg-block">
               <Col>
                 <Image
@@ -374,8 +397,8 @@ export default function(props) {
                   </Col>
                 </Row>
                 <Row>
-                  <Col lg={6} sm={12} md={7}>
-                    <Tabs defaultActiveKey="whitepaper">
+                  <Col lg={6} sm={12} md={6}>
+                    <Tabs defaultActiveKey="market">
                       <Tab eventKey="market" title="Market">
                         <Stats />
                       </Tab>
@@ -390,7 +413,7 @@ export default function(props) {
                       </Tab>
                     </Tabs>
                   </Col>
-                  <Col lg={6} sm={12} md={5}>
+                  <Col lg={6} sm={12} md={6}>
                     <CryptoPriceAreaChart crypto={props.id} interval={'m15'} />
                   </Col>
                 </Row>

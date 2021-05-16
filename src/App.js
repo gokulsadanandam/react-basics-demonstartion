@@ -119,7 +119,7 @@ const App = withRouter(props => {
           <CryptoStats />
         </Route>
         <Route path="/crypto">
-          <CryptoDetailed id="bitcoin" />
+          <CryptoDetailed id="ethereum" />
         </Route>
         <Route exact path="/">
           <CryptoList />
