@@ -81,7 +81,8 @@ const App = withRouter(props => {
               type="text"
               placeholder="Search"
               style={{ marginRight: 8 }}
-              onClick={() => props.history.push('/graphs')}
+              onFocus={() => props.history.push('/graphs')}
+              onBlur={() => props.history.push('/')}
             />
             <Button variant="outline-light">Search</Button>
           </Form>
