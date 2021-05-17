@@ -33,6 +33,7 @@ const Loader = () => (
 
 const CryptoDetailedHeaderTray = ({
   symbol,
+  name,
   rank,
   org_structure,
   open_source,

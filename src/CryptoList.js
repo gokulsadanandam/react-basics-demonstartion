@@ -131,9 +131,6 @@ export default withRouter(function(props) {
               {livePrice.currentPrice && `$ ${livePrice.currentPrice}`}
             </Col>
           </Row>
-          {/* <Row>
-            {isSelected && <CryptoGraph interval={'m15'} crypto={id} />}
-          </Row> */}
         </Container>
       </ListGroup.Item>
     );
@@ -185,8 +182,7 @@ export default withRouter(function(props) {
                     <CryptoGraph interval={'m15'} crypto={exchange.id} />
                     <Button
                       variant="success"
-                      className="rounded"
-                      size="sm"
+                      className="mb-4 rounded"
                       onClick={() =>
                         props.history.push(`/crypto/${exchange.id}`)
                       }
