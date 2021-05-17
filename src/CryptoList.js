@@ -22,12 +22,9 @@ export default withRouter(function(props) {
     'ethereum',
     'ripple',
     'bitcoin-cash',
-    'eos',
     'stellar',
     'litecoin',
-    'cardano',
-    'tether',
-    'iota'
+    'cardano'
   ];
 
   const crypto_ids_coinpaprika_map = {
@@ -99,7 +96,11 @@ export default withRouter(function(props) {
     const onClickHandler = () => onItemSelection(name);
 
     return (
-      <ListGroup.Item action className="p-0" onClick={onClickHandler}>
+      <ListGroup.Item
+        action
+        onClick={() => props.history.push(`/crypto/${id}`)}
+        className="p-0"
+      >
         <Container style={{ position: 'relative' }}>
           <Row>
             <Col
@@ -137,64 +138,40 @@ export default withRouter(function(props) {
   };
 
   return (
-    <Container className="mt-4 text-center">
-      <Row>
-        <ListGroup>
-          <ListGroup.Item variant="primary">
-            <Container>
-              <Row>
-                <Col>Name</Col>
-                <Col className="d-none d-md-block d-lg-block">Supply</Col>
-                <Col className="d-none d-md-block d-lg-block">Market Cap</Col>
-                <Col className="d-none d-md-block d-lg-block">
-                  Volume (24 Hr)
-                </Col>
-                <Col>Price</Col>
-              </Row>
-            </Container>
-          </ListGroup.Item>
-          {cryptoAssests &&
-            cryptoAssests.map((exchange, index) => (
-              <Accordion>
-                <Accordion.Toggle as="div" eventKey={`crypto-list-${index}`}>
-                  <ListItem
-                    name={exchange.name}
-                    priceUsd={exchange.priceUsd}
-                    livePrice={{
-                      lastPrice: cryptoPrices['previousPrice'][exchange.id],
-                      currentPrice: cryptoPrices['currentPrice'][exchange.id]
-                    }}
-                    currentPrice={cryptoPrices['currentPrice'][exchange.id]}
-                    supply={exchange.supply}
-                    volumeUsd24Hr={exchange.volumeUsd24Hr}
-                    marketCapUsd={exchange.marketCapUsd}
-                    onItemSelection={setselectedCrypto}
-                    id={exchange.id}
-                    isSelected={
-                      selectedCrypto && selectedCrypto == exchange.name
-                        ? true
-                        : false
-                    }
-                  />
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey={`crypto-list-${index}`}>
-                  <Container className="mb-2">
-                    <CryptoGraph interval={'m15'} crypto={exchange.id} />
-                    <Button
-                      variant="success"
-                      className="mb-4 rounded"
-                      onClick={() =>
-                        props.history.push(`/crypto/${exchange.id}`)
-                      }
-                    >
-                      View More Details
-                    </Button>
-                  </Container>
-                </Accordion.Collapse>
-              </Accordion>
-            ))}
-        </ListGroup>
-      </Row>
-    </Container>
+    <ListGroup className="text-center">
+      <ListGroup.Item variant="primary">
+        <Container>
+          <Row>
+            <Col>Name</Col>
+            <Col className="d-none d-md-block d-lg-block">Supply</Col>
+            <Col className="d-none d-md-block d-lg-block">Market Cap</Col>
+            <Col className="d-none d-md-block d-lg-block">Volume (24 Hr)</Col>
+            <Col>Price</Col>
+          </Row>
+        </Container>
+      </ListGroup.Item>
+      {cryptoAssests &&
+        cryptoAssests.map((exchange, index) => (
+          <>
+            <ListItem
+              name={exchange.name}
+              priceUsd={exchange.priceUsd}
+              livePrice={{
+                lastPrice: cryptoPrices['previousPrice'][exchange.id],
+                currentPrice: cryptoPrices['currentPrice'][exchange.id]
+              }}
+              currentPrice={cryptoPrices['currentPrice'][exchange.id]}
+              supply={exchange.supply}
+              volumeUsd24Hr={exchange.volumeUsd24Hr}
+              marketCapUsd={exchange.marketCapUsd}
+              onItemSelection={setselectedCrypto}
+              id={exchange.id}
+              isSelected={
+                selectedCrypto && selectedCrypto == exchange.name ? true : false
+              }
+            />
+          </>
+        ))}
+    </ListGroup>
   );
 });

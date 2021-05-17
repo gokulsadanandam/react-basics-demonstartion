@@ -31,38 +31,32 @@ export default function() {
   const truncateText = (text, size) => text.slice(0, size);
 
   return (
-    <Container as="div" className="mt-3">
-      <Row>
-        <Col lg={4} md={6}>
-          <Slider {...settings}>
-            {news.map(i => (
-              <Media className="d-flex align-items-start border rounded  mt-3 p-2 ">
-                <Image
-                  rounded
-                  src={i.imgURL}
-                  width={75}
-                  style={{ height: '100%' }}
-                  className="mx-3 my-1 d-none d-md-block d-lg-block"
-                  alt="Alt Coin"
-                />
-                <Media.Body className="w-100">
-                  <div className="line-clamp fs-6">
-                    <p>{truncateText(i.title, 100)}</p>
-                  </div>
-                  <Button
-                    variant="outline-primary text-center d-flex justify-content-center mx-auto"
-                    size="sm"
-                    href={i.link}
-                    target="_blank"
-                  >
-                    Click Here to Read More
-                  </Button>
-                </Media.Body>
-              </Media>
-            ))}
-          </Slider>
-        </Col>
-      </Row>
-    </Container>
+    <Slider {...settings}>
+      {news.map(i => (
+        <Media className="d-flex align-items-start border rounded p-2 ">
+          <Image
+            rounded
+            src={i.imgURL}
+            width={75}
+            style={{ height: '100%' }}
+            className="mx-3 my-1 d-none d-md-block d-lg-block"
+            alt="Alt Coin"
+          />
+          <Media.Body className="w-100">
+            <div className="line-clamp fs-6">
+              <p>{truncateText(i.title, 100)}</p>
+            </div>
+            <Button
+              variant="outline-primary text-center d-flex justify-content-center mx-auto"
+              size="sm"
+              href={i.link}
+              target="_blank"
+            >
+              Click Here to Read More
+            </Button>
+          </Media.Body>
+        </Media>
+      ))}
+    </Slider>
   );
 }

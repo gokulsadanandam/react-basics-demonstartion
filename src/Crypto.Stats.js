@@ -38,56 +38,57 @@ export default function() {
   `;
 
   return (
-    <Container fluid>
-      <Row>
-        <Col lg={2} md={4}>
-          <Media className="d-flex align-items-start border rounded p-2 bg-dark text-white ">
-            <Image
-              rounded
-              src={BitCoinIcon}
-              width={60}
-              style={{ height: '100%' }}
-              className="mx-2 d-none d-md-block d-lg-block"
-              alt="Alt Coin"
-            />
-            {/* {BitCoinIcon} */}
-            <Media.Body className="w-100 text-center">
-              <h6 className="fw-lighter text-muted">Cryptos</h6>
-              <div className="fw-bold" style={{ letterSpacing: 2 }}>
-                {stats.cryptocurrencies_number || '...'}
-              </div>
-            </Media.Body>
-          </Media>
-        </Col>
-        <Col lg={2} md={4}>
-          <Media className="d-flex align-items-start border rounded p-2 bg-dark text-white ">
-            <StyledAiOutlineAreaChart />
-            <Media.Body className="w-100 text-center">
-              <h6 className="fw-lighter text-muted">MarketCap</h6>
-              <div className="fw-bold" style={{ letterSpacing: 2 }}>
-                ${' '}
-                {`${parseFloat(stats.market_cap_usd / 1000000000000).toFixed(
-                  3
-                )} T` || '...'}
-              </div>
-            </Media.Body>
-          </Media>
-        </Col>
-        <Col lg={2} md={4}>
-          <Media className="d-flex align-items-start border rounded p-2 bg-dark text-white ">
-            <StyledBsBarChartFill />
-            <Media.Body className="w-100 text-center">
-              <h6 className="fw-lighter text-muted">24Hr Volume </h6>
-              <div className="fw-bold" style={{ letterSpacing: 2 }}>
-                ${' '}
-                {`${parseFloat(stats.volume_24h_usd / 1000000000).toFixed(
-                  3
-                )} B` || '...'}
-              </div>
-            </Media.Body>
-          </Media>
-        </Col>
-      </Row>
-    </Container>
+    <>
+      <Media className="d-flex w-50 align-items-center border rounded mb-2 p-2 bg-dark text-white ">
+        <Image
+          rounded
+          src={BitCoinIcon}
+          width={60}
+          style={{ height: '100%' }}
+          className="mx-2 d-none d-md-block d-lg-block"
+          alt="Alt Coin"
+        />
+        <Media.Body className="w-100 text-center">
+          <h6 className="fw-lighter text-muted">Cryptos</h6>
+          <div className="fw-bold" style={{ letterSpacing: 2 }}>
+            {stats.cryptocurrencies_number || '...'}
+          </div>
+        </Media.Body>
+      </Media>
+      <Media className="d-flex w-50 align-items-center border rounded mb-2 p-2 bg-dark text-white ">
+        <StyledAiOutlineAreaChart />
+        <Media.Body className="w-100 text-center">
+          <h6 className="fw-lighter text-muted">MarketCap</h6>
+          <div className="fw-bold" style={{ letterSpacing: 2 }}>
+            ${' '}
+            {`${parseFloat(stats.market_cap_usd / 1000000000000).toFixed(
+              3
+            )} T` || '...'}
+          </div>
+        </Media.Body>
+      </Media>
+      <Media className="d-flex w-50 align-items-center border rounded mb-2 p-2 bg-dark text-white ">
+        <StyledBsBarChartFill />
+        <Media.Body className="w-100 text-center">
+          <h6 className="fw-lighter text-muted">24Hr Volume </h6>
+          <div className="fw-bold" style={{ letterSpacing: 2 }}>
+            ${' '}
+            {`${parseFloat(stats.volume_24h_usd / 1000000000).toFixed(3)} B` ||
+              '...'}
+          </div>
+        </Media.Body>
+      </Media>
+      <Media className="d-flex w-50 align-items-center border rounded mb-2 p-2 bg-dark text-white ">
+        <StyledBsBarChartFill />
+        <Media.Body className="w-100 text-center">
+          <h6 className="fw-lighter text-muted">24Hr Volume </h6>
+          <div className="fw-bold" style={{ letterSpacing: 2 }}>
+            ${' '}
+            {`${parseFloat(stats.volume_24h_usd / 1000000000).toFixed(3)} B` ||
+              '...'}
+          </div>
+        </Media.Body>
+      </Media>
+    </>
   );
 }
