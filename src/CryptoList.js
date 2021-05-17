@@ -2,12 +2,14 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
 import Accordion from 'react-bootstrap/Accordion';
+import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import './style';
 import CryptoGraph from './Crypto-Graph';
+import { withRouter } from 'react-router-dom';
 
-export default function() {
+export default withRouter(function(props) {
   const [cryptoPrices, SetCryptoPrices] = useState({
     previousPrice: {},
     currentPrice: {}
@@ -179,7 +181,19 @@ export default function() {
                   />
                 </Accordion.Toggle>
                 <Accordion.Collapse eventKey={`crypto-list-${index}`}>
-                  <CryptoGraph interval={'m15'} crypto={exchange.id} />
+                  <Container className="mb-2">
+                    <CryptoGraph interval={'m15'} crypto={exchange.id} />
+                    <Button
+                      variant="success"
+                      className="rounded"
+                      size="sm"
+                      onClick={() =>
+                        props.history.push(`/crypto/${exchange.id}`)
+                      }
+                    >
+                      View More Details
+                    </Button>
+                  </Container>
                 </Accordion.Collapse>
               </Accordion>
             ))}
@@ -187,4 +201,4 @@ export default function() {
       </Row>
     </Container>
   );
-}
+});

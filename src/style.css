@@ -79,6 +79,9 @@
   display: flex !important;
 }
 
+.slick-slider {
+  max-width: 1050px;
+}
 .slick-slide {
   height: inherit !important;
 }

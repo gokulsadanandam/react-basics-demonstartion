@@ -72,7 +72,7 @@ const App = withRouter(props => {
             <Link to="/stats" className="custom-nav-link px-2">
               Market Stats
             </Link>
-            <Link to="/crypto" className="custom-nav-link px-2">
+            <Link to="/crypto/bitcoin" className="custom-nav-link px-2">
               Detailed Info
             </Link>
           </Nav>
@@ -118,8 +118,8 @@ const App = withRouter(props => {
         <Route path="/stats">
           <CryptoStats />
         </Route>
-        <Route path="/crypto">
-          <CryptoDetailed id="ethereum" />
+        <Route path="/crypto/:id">
+          <CryptoDetailed />
         </Route>
         <Route exact path="/">
           <CryptoList />
