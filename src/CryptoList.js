@@ -24,7 +24,9 @@ export default withRouter(function(props) {
     'bitcoin-cash',
     'stellar',
     'litecoin',
-    'cardano'
+    'cardano',
+    'eos',
+    'iota'
   ];
 
   const crypto_ids_coinpaprika_map = {
@@ -71,6 +73,7 @@ export default withRouter(function(props) {
 
     pricesWs.onerror = err => {
       console.log(err);
+      return () => pricesWs.close();
     };
 
     return () => pricesWs.close();
