@@ -72,7 +72,7 @@ const App = withRouter(props => {
             <Link to="/stats" className="custom-nav-link px-2">
               Market Stats
             </Link>
-            <Link to="/crypto/bitcoin" className="custom-nav-link px-2">
+            <Link to="/crypto/bitcoisdfasn" className="custom-nav-link px-2">
               Detailed Info
             </Link>
           </Nav>
