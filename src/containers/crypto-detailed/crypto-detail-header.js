@@ -40,41 +40,36 @@ const CryptoDetailedHeaderTray = ({
   websitelink
 }) => {
   return (
-    (symbol &&
-      rank &&
-      org_structure &&
-      open_source &&
-      type &&
-      websitelink && (
-        <>
-          <Col
-            sm={12}
-            lg={8}
-            md={9}
-            className="d-flex flex-wrap my-4 p-0 align-items-baseline"
+    (symbol && rank && org_structure && type && websitelink && (
+      <>
+        <Col
+          sm={12}
+          lg={8}
+          md={9}
+          className="d-flex flex-wrap my-4 p-0 align-items-baseline"
+        >
+          <h5 className="fw-bold text-muted me-2">
+            {`#${rank} ${name} (${symbol}) `}
+          </h5>
+          <span className={`badge mx-1 bg-primary`}>{org_structure}</span>
+          <span className={`badge mx-1 bg-success`}>
+            {open_source ? 'Open Sourced' : 'Close Sourced'}
+          </span>
+          <span className={`badge mx-1 bg-danger`}>{type} </span>
+        </Col>
+        <Col sm={12} lg={2} md={3} className="ms-auto">
+          <Button
+            variant="outline-primary"
+            className="ml-auto w-100"
+            size="sm"
+            target="_blank"
+            href={websitelink}
           >
-            <h5 className="fw-bold text-muted me-2">
-              {`#${rank} ${name} (${symbol}) `}
-            </h5>
-            <span className={`badge mx-1 bg-primary`}>{org_structure}</span>
-            <span className={`badge mx-1 bg-success`}>
-              {open_source ? 'Open Sourced' : 'Close Sourced'}
-            </span>
-            <span className={`badge mx-1 bg-danger`}>{type} </span>
-          </Col>
-          <Col sm={12} lg={2} md={3} className="ms-auto">
-            <Button
-              variant="outline-primary"
-              className="ml-auto w-100"
-              size="sm"
-              target="_blank"
-              href={websitelink}
-            >
-              Open Website
-            </Button>
-          </Col>
-        </>
-      )) || <Loader />
+            Open Website
+          </Button>
+        </Col>
+      </>
+    )) || <Loader />
   );
 };
 

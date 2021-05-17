@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Title from './Title';
-
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
-import CardColumns from 'react-bootstrap/CardColumns';
-
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import styled from 'styled-components';
-import { PieChart, Pie, Label, ResponsiveContainer } from 'recharts';
 import { BsBarChartFill } from 'react-icons/bs';
 import { RiDonutChartFill } from 'react-icons/ri';
 import { AiOutlineAreaChart } from 'react-icons/ai';
