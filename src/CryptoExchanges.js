@@ -26,7 +26,7 @@ export default function CryptoExchanges() {
 
   const StyledCard = styled(Card)`
     max-width: 270px;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
     padding: 0px;
   `;
 
@@ -34,25 +34,36 @@ export default function CryptoExchanges() {
     parseInt((new Date().getTime() - time) / (1000 * 60)) + 1;
 
   const SkeletonCards = () => (
-    <Card>
-      <Skeleton circle={true} height={50} width={50} />
+    <StyledCard>
+      <Container as="div" className="m-2 text-center">
+        <Skeleton square={true} height={140} width={140} />
+      </Container>
       <Card.Body>
-        <Container>
+        <Container fluid className="p-0">
+          <Row>
+            <Skeleton />
+          </Row>
           <Row>
             <Col>
-              <Skeleton count={2} height={5} width={50} />
-              <Skeleton height={5} width={40} />
+              <Skeleton width={100} />
+            </Col>
+            <Col>
+              <Skeleton />
             </Col>
           </Row>
         </Container>
       </Card.Body>
-    </Card>
+      <Card.Footer>
+        <Skeleton />
+      </Card.Footer>
+    </StyledCard>
   );
 
   return (
     <Container className="mt-3" fluid>
       <Row className="card-example d-flex flex-row align-items-center justify-content-evenly flex-wrap overflow-auto">
-        {exchanges &&
+        {(exchanges &&
+          exchanges.length &&
           exchanges.map(
             (
               {
@@ -117,7 +128,8 @@ export default function CryptoExchanges() {
                 </StyledCard>
               );
             }
-          )}
+          )) ||
+          new Array(10).fill(0).map(() => <SkeletonCards />)}
       </Row>
     </Container>
   );

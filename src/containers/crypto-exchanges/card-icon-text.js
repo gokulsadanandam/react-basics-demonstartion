@@ -4,17 +4,21 @@ import TooltipContainer from '../../components/ToolTip.Container';
 
 import styled from 'styled-components';
 
-const CardIconText = ({ icon, text, tooltip }) => {
-  const StyledIcon = styled(icon)`
+const StyledIcon = styled.div`
+  svg {
     width: 35px;
     height: 35px;
-  `;
-
+  }
+`;
+const CardIconText = ({ icon, text, tooltip }) => {
+  const Icon = icon;
   return (
     <TooltipContainer tooltip={tooltip}>
       <Row className="text-center d-flex flex-column">
         <Col>
-          <StyledIcon />
+          <StyledIcon>
+            <Icon />
+          </StyledIcon>
         </Col>
         <Col className="text-center mt-2">{text}</Col>
       </Row>
