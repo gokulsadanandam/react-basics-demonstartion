@@ -23,7 +23,8 @@ export default withRouter(function(props) {
     'litecoin',
     'cardano',
     'eos',
-    'iota'
+    'iota',
+    'dogecoin'
   ];
 
   useEffect(() => {
@@ -59,12 +60,6 @@ export default withRouter(function(props) {
 
     return () => pricesWs.close();
   }, []);
-
-  const priceInThousandString = number => `$ ${parseInt(number) / 1000} K`;
-  const priceInMillionString = number =>
-    `$ ${parseInt(number / 1000) / 1000} M`;
-  const priceInBillionString = number =>
-    `$ ${parseInt(number / 1000000) / 1000} B`;
 
   const ListItem = ({
     name,
@@ -133,21 +128,11 @@ export default withRouter(function(props) {
         cryptoAssests.map((exchange, index) => (
           <>
             <ListItem
-              name={exchange.name}
-              priceUsd={exchange.priceUsd}
+              {...exchange}
               livePrice={{
                 lastPrice: cryptoPrices['previousPrice'][exchange.id],
                 currentPrice: cryptoPrices['currentPrice'][exchange.id]
               }}
-              currentPrice={cryptoPrices['currentPrice'][exchange.id]}
-              supply={exchange.supply}
-              volumeUsd24Hr={exchange.volumeUsd24Hr}
-              marketCapUsd={exchange.marketCapUsd}
-              onItemSelection={setselectedCrypto}
-              id={exchange.id}
-              isSelected={
-                selectedCrypto && selectedCrypto == exchange.name ? true : false
-              }
             />
           </>
         ))}
