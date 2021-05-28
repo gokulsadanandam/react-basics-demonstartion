@@ -121,9 +121,9 @@ export default function CryptoExchanges() {
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer className="text-center">
-                    <small className="text-muted">{`Last Updated - ${TimeDifferenceCalculator(
-                      updated
-                    )} min(s) ago `}</small>
+                    <small className="text-muted">
+                      {`Last Updated - ${new Date(updated).toDateString()} `}
+                    </small>
                   </Card.Footer>
                 </StyledCard>
               );

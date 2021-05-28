@@ -12,7 +12,6 @@ export default withRouter(function(props) {
     currentPrice: {}
   });
   const [cryptoAssests, setCryptoAssets] = useState([]);
-  const [selectedCrypto, setselectedCrypto] = useState(null);
 
   const cryptos = [
     'bitcoin',
@@ -70,6 +69,10 @@ export default withRouter(function(props) {
     livePrice,
     id
   }) => {
+    const { currentPrice, lastPrice } = livePrice;
+    const currentPriceInFloat = parseFloat(currentPrice);
+    const lastPriceInFloat = parseFloat(lastPrice);
+
     return (
       <ListGroup.Item
         action
@@ -80,11 +83,11 @@ export default withRouter(function(props) {
           <Row>
             <Col
               className={` ${
-                livePrice.currentPrice > livePrice.previousPrice + 0.1
-                  ? 'fade-out-animation-loss'
-                  : livePrice.currentPrice == livePrice.previousPrice
+                currentPriceInFloat > lastPriceInFloat
+                  ? 'fade-out-animation-gain'
+                  : currentPriceInFloat == lastPriceInFloat
                   ? ''
-                  : 'fade-out-animation-gain '
+                  : 'fade-out-animation-loss'
               }`}
             />
           </Row>
@@ -101,9 +104,9 @@ export default withRouter(function(props) {
             </Col>
             <Col>
               {!livePrice.currentPrice &&
-                Numeral(priceUsd).format('($ 0.00 a)')}
+                Numeral(priceUsd).format('($ 0.000000 a)')}
               {livePrice.currentPrice &&
-                Numeral(livePrice.currentPrice).format('($ 0.00 a)')}
+                Numeral(livePrice.currentPrice).format('($ 0.000000 a)')}
             </Col>
           </Row>
         </Container>
