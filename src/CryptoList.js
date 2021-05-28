@@ -1,13 +1,10 @@
-import ListGroup from 'react-bootstrap/ListGroup';
 import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Accordion from 'react-bootstrap/Accordion';
-import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import './style';
-import CryptoGraph from './Crypto-Graph';
+import { Container, Row, Col, ListGroup } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
+
+import Numeral from 'numeral';
+
+import './style';
 
 export default withRouter(function(props) {
   const [cryptoPrices, SetCryptoPrices] = useState({
@@ -28,21 +25,6 @@ export default withRouter(function(props) {
     'eos',
     'iota'
   ];
-
-  const crypto_ids_coinpaprika_map = {
-    bitcoin: 'btc-bitcoin',
-    ethereum: 'eth-ethereum',
-    ripple: 'xrp-xrp',
-    'bitcoin-cash': 'bch-bitcoin-cash',
-    eos: 'eos-eos',
-    stellar: 'xlm-stellar',
-    litecoin: 'lcc-litecoin-cash',
-    iota: 'miota-iota',
-    tether: 'usdt-tether',
-    iota: 'miota-iota'
-  };
-
-  const keys = ['name', 'supply', 'marketCapUsd', 'volumeUsd24Hr', 'vwap24Hr'];
 
   useEffect(() => {
     fetch(`https://api.coincap.io/v2/assets?ids=${cryptos.toString()}`, {
@@ -72,7 +54,6 @@ export default withRouter(function(props) {
     };
 
     pricesWs.onerror = err => {
-      console.log(err);
       return () => pricesWs.close();
     };
 
@@ -92,12 +73,8 @@ export default withRouter(function(props) {
     volumeUsd24Hr,
     priceUsd,
     livePrice,
-    onItemSelection,
-    id,
-    isSelected
+    id
   }) => {
-    const onClickHandler = () => onItemSelection(name);
-
     return (
       <ListGroup.Item
         action
@@ -119,20 +96,19 @@ export default withRouter(function(props) {
           <Row className="px-1 py-2">
             <Col>{name}</Col>
             <Col className="d-none d-md-block d-lg-block">
-              {priceInMillionString(supply)}
+              {Numeral(supply).format('(0.00 a)')}{' '}
             </Col>
             <Col className="d-none d-md-block d-lg-block">
-              {priceInBillionString(marketCapUsd)}
+              {Numeral(marketCapUsd).format('($ 0.00 a)')}{' '}
             </Col>
             <Col className="d-none d-md-block d-lg-block">
-              {priceInBillionString(volumeUsd24Hr)}{' '}
+              {Numeral(volumeUsd24Hr).format('(0.00 a)')}{' '}
             </Col>
             <Col>
               {!livePrice.currentPrice &&
-                (priceUsd > 1000
-                  ? priceInThousandString(priceUsd)
-                  : `$ ${parseFloat(priceUsd).toFixed(2)} `)}
-              {livePrice.currentPrice && `$ ${livePrice.currentPrice}`}
+                Numeral(priceUsd).format('($ 0.00 a)')}
+              {livePrice.currentPrice &&
+                Numeral(livePrice.currentPrice).format('($ 0.00 a)')}
             </Col>
           </Row>
         </Container>
